@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -30,8 +32,9 @@ public class Discount {
 	
 	// 1 - OGGETTO PER STABILIRE LA RELAZIONE CON L'ALTRA ENTITA';
 	// 2 - NOME DELLA COLONNA CHE FUNGERA' DA CHIAVE ESTERNA;
+	@ManyToOne
+	@JoinColumn(name = "pizza_id", nullable = false)
 	private Pizza pizza;
-
 	
 	//GETTER - SETTER
 	public Integer getId() {

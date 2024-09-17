@@ -3,13 +3,11 @@ package com.lessons.java.spring.pizzeria.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -41,6 +39,8 @@ public class Pizza {
 	
 	// 1 - LA RELAZIONE E' UNO A MOLTI, DOVE UNA PIZZA PUO' AVERE PIU' SCONTI E QUINDI C'E' UNA LISTA;
 	//POSSIAMO STABILIRE NELLA RELAZIONE CHE UNA VOLTA RIMOSSA L'ENTITA', TUTTE LE RELAZIONI CONNESSE ALLA PIZZA ANDRANNO PERSE;
+	//DENTRO AL "mappedBy" FACCIO RIFERIMENTO ALLA VARIABILE D'ISTANZA CHE E' PRESENTE NELL'ENTITA' A CUI E' COLLEGATA PIZZA;
+	@OneToMany(mappedBy = "pizza")
 	private List<Discount> discounts;
 	
 	// 1 - VARIABILE CHE AVRA' COME IL RISULTATO DI UNA SPECIFICA QUERY;
