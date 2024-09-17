@@ -1,6 +1,7 @@
 package com.lessons.java.spring.pizzeria.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -38,6 +39,12 @@ public class Pizza {
 	@Min(1)
 	private double price;
 	
+	// 1 - LA RELAZIONE E' UNO A MOLTI, DOVE UNA PIZZA PUO' AVERE PIU' SCONTI E QUINDI C'E' UNA LISTA;
+	//POSSIAMO STABILIRE NELLA RELAZIONE CHE UNA VOLTA RIMOSSA L'ENTITA', TUTTE LE RELAZIONI CONNESSE ALLA PIZZA ANDRANNO PERSE;
+	private List<Discount> discounts;
+	
+	// 1 - VARIABILE CHE AVRA' COME IL RISULTATO DI UNA SPECIFICA QUERY;
+	private int availableCopies;
 	
 	private LocalDateTime updateAt;
 
@@ -90,6 +97,21 @@ public class Pizza {
 	public void setUpdateAt(LocalDateTime updateAt) {
 		this.updateAt = updateAt;
 	}
-	
 
+	public List<Discount> getDiscounts() {
+		return discounts;
+	}
+
+	public void setDiscounts(List<Discount> discounts) {
+		this.discounts = discounts;
+	}
+
+	public int getAvailableCopies() {
+		return availableCopies;
+	}
+
+	public void setAvailableCopies(int availableCopies) {
+		this.availableCopies = availableCopies;
+	}
+	
 }
