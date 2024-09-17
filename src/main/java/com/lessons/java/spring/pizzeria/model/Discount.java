@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size;
 
 //ENTITA' SCONTO;
 @Entity
-@Table(name = "Discounts")
+@Table(name = "discounts")
 public class Discount {
 
 	@Id
@@ -25,9 +25,11 @@ public class Discount {
 	@NotNull
 	@Size(min=2, max=255)
 	private String title;
-		
+	
+	@NotNull
 	private LocalDateTime startDate;
 	
+	@NotNull
 	private LocalDateTime finishDate;
 	
 	// 1 - OGGETTO PER STABILIRE LA RELAZIONE CON L'ALTRA ENTITA';
