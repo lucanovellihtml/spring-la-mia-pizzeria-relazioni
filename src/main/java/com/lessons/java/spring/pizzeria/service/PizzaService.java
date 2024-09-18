@@ -22,9 +22,9 @@ public class PizzaService {
 	 * @param searchText, NOME DELLA PIZZA;
 	 * @return TUTTE LE INFORMAZIONI DELLA SPECIFICA PIZZA RICERCATA;
 	 */
-	public List<Pizza> findAllByName(String searchText){
+	public List<Pizza> findAllByName(String name){
 		
-		return repository.findByName(searchText);
+		return repository.findByName(name);
 		
 	}
 	
@@ -33,7 +33,7 @@ public class PizzaService {
 	 * 
 	 * @return LA LISTA DELLE PIZZE PRESENTI NEL REPOSITORY;
 	 */
-	public List<Pizza> findAll(){
+	public List<Pizza> findAllPizza(){
 		
 		return repository.findAll();
 		
@@ -45,9 +45,9 @@ public class PizzaService {
 	 * @param searchId, ID DELLA PIZZA;
 	 * @return TUTTE LE INFORMAZIONI DELLA SPECIFICA PIZZA RICERCATA;
 	 */
-	public Pizza findById(int searchId){
+	public Pizza findById(int id){
 		
-		return repository.findById(searchId).get();
+		return repository.findById(id).get();
 		
 	}
 
@@ -77,9 +77,9 @@ public class PizzaService {
 	/**
 	 * @param searchId, ID DELLA PIZZA DA ELIMINARE;
 	 */
-	public void delete(int searchId){
+	public void delete(int id){
 	
-		repository.deleteById(searchId);
+		repository.deleteById(id);
 		
 	}
 	
