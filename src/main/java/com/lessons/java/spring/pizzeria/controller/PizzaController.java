@@ -2,7 +2,6 @@ package com.lessons.java.spring.pizzeria.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lessons.java.spring.pizzeria.model.Pizza;
-import com.lessons.java.spring.pizzeria.repo.PizzaRepository;
+import com.lessons.java.spring.pizzeria.service.PizzaService;
 
 import jakarta.validation.Valid;
 
@@ -25,9 +24,9 @@ import jakarta.validation.Valid;
 @RequestMapping("/pizze")
 public class PizzaController {
 
-	//REPOSITORY CAMPO CON AUTOWIRED CON D.I
-	@Autowired
-	private PizzaRepository repo;
+	
+	//SERVICE
+	private PizzaService service;
 	
 	
 	/**
@@ -42,9 +41,9 @@ public class PizzaController {
 		List<Pizza> listPizze;
 		
 		if( name != null && !name.isEmpty() )
-			listPizze = repo.findByName(name);
+			listPizze = service.findAllByName(name);
 		else
-			listPizze = repo.findAll();
+			listPizze = service.findAll();
 
 		//INSERISCO I DATI DELLA LISTA NEL MODEL;
 		model.addAttribute("pizze", listPizze);
@@ -62,7 +61,7 @@ public class PizzaController {
 	public String indexSinglePizza(@PathVariable("id") int id , Model model) {
 		
 		//INSERISCO I DATI DELLA PIZZA NEL MODEL;
-		model.addAttribute("pizza", repo.findById(id).get());
+		model.addAttribute("pizza", service.findById(id));
 		
 		return "/pizza/single-pizza";
 		
@@ -99,7 +98,7 @@ public class PizzaController {
 		if(bindingResult.hasErrors())
 			return "/pizza/form-create-pizza";
 		
-		repo.save(formPizza);
+		service.create(formPizza);
 		
 		return "redirect:/pizze";
 		
@@ -115,7 +114,7 @@ public class PizzaController {
 	public String edit(@PathVariable("id") int id , Model model) {
 		
 		//INSERISCO I DATI DELLA PIZZA NEL MODEL;
-		model.addAttribute("pizza", repo.findById(id).get());
+		model.addAttribute("pizza", service.findById(id));
 		
 		return "/pizza/form-edit-pizza";
 		
@@ -136,7 +135,7 @@ public class PizzaController {
 		if(bindingResult.hasErrors())
 			return "/pizza/form-edit-pizza";
 		
-		repo.save(formPizza);
+		service.update(formPizza);
 		
 		return "redirect:/pizze";
 		
@@ -152,7 +151,7 @@ public class PizzaController {
 	public String delete(@PathVariable("id") int id, RedirectAttributes attributes) {
 		
 		//ELIMINO I DATI DELLA PIZZA DAL REPOSITORY;
-		repo.deleteById(id);
+		service.delete(id);
 		
 		attributes.addFlashAttribute("successMessage", "Pizza deleted...");
 		
