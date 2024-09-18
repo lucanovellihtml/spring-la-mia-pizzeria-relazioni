@@ -2,6 +2,7 @@ package com.lessons.java.spring.pizzeria.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,8 @@ public class PizzaController {
 
 	
 	//SERVICE
+	//REPOSITORY CAMPO CON AUTOWIRED CON D.I, DIRE ALL'APPLICATIVO DI INSTANZIARE IN AUTOMATICO IL SERVICE
+	@Autowired
 	private PizzaService service;
 	
 	
@@ -43,7 +46,7 @@ public class PizzaController {
 		if( name != null && !name.isEmpty() )
 			listPizze = service.findAllByName(name);
 		else
-			listPizze = service.findAll();
+			listPizze = service.findAllPizza();
 
 		//INSERISCO I DATI DELLA LISTA NEL MODEL;
 		model.addAttribute("pizze", listPizze);
