@@ -7,66 +7,74 @@
 
 <body>
 
-	<header th:insert="~{fragments/navbar :: navbar('pizze')}">
+	<header th:insert="~{fragments/navbar :: navbar('pizza/create')}">
 	</header>
 	
 	<main>
 		
 		<!-- SECTION TABLE INDEX -->
-		<section class="container text-center">
+		<section class="container-sm text-center">
 			<div class="row gap-4 justify-content-center">
 				
 				<!-- TITLE -->
 				<div class="col-12 pt-3 d-flex flex-column gap-3">
-				      <h1>Modifica pizza</h1>
-					  <p>Complete the form to modificate the pizza!!!</p>
+				      <h1>Modifica Offerta</h1>
+					  <p>Complete the form to update the discount!!!</p>
 				</div>
 				 
 				 
-				 <!-- FORM EDIT PIZZA -->
-				 <form class="col-12 col-lg-6" id="form-create-pizza" th:object="${pizza}" th:action="@{/pizze/edit/{id}(id=${pizza.id})}" method="POST">
+				 <!-- FORM EDIT DISCOUNT -->
+				 <form class="col-12 col-lg-6" id="form-edit-discount" th:object="${discount}" th:action="@{/discounts/edit/{id}(id=${discount.id})}" method="POST">
 					
-					<!-- INPUT NAME -->
+					
+					<!-- INPUT TITLE -->
 					<div class="mb-3">
-					   <label for="name" class="form-label">Name</label>
-					   <input type="text" class="form-control" id="name" placeholder="Insert name of pizza" th:field="*{name}" th:errorClass="is-invalid">
+					   <label for="id_pizza" class="form-label">Id Pizza</label>
+					   <input type="number" class="form-control" placeholder="Disabled input" id="id_pizza" th:field="*{pizza.id}" th:value="*{pizza.id}" disable>			   
+				   </div>
+
+					
+					<!-- INPUT TITLE -->
+					<div class="mb-3">
+					   <label for="title" class="form-label">Title</label>
+					   <input type="text" class="form-control" id="title" placeholder="Insert title of discount" th:field="*{title}" th:errorClass="is-invalid">
 				   
-					   <!-- ERROR INPUT NAME -->
-					   <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+					   <!-- ERROR INPUT TITLE-->
+					   <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
 						   <ul>
-						   		<li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+						   		<li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
 						   </ul>
 					   </div>
 					   
 				   </div>
 					 
-					 <!-- INPUT DESCRIPTION -->
+					 <!-- INPUT START DATE -->
 					 <div class="mb-3">
-					   <label for="description" class="form-label">Description</label>
-					   <input type="text" class="form-control" id="description" placeholder="Insert description of pizza" th:field="*{description}" th:errorClass="is-invalid">
+					   <label for="startDate" class="form-label">Start Date</label>
+					   <input type="datetime-local" class="form-control" id="startDate" placeholder="Insert start date of discount" th:field="*{startDate}" th:errorClass="is-invalid">
 				   	
-					   <!-- ERROR INPUT DESCRIPTION -->
-					   <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+					   <!-- ERROR INPUT START DATE -->
+					   <div th:if="${#fields.hasErrors('startDate')}" class="invalid-feedback">
 					      <ul>
-					      		<li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+					      		<li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
 					      </ul>
 					   </div>
 				   
 				     </div>
 					 
-					 <!-- INPUT PRICE -->
-					 <div class="mb-3">
-					   <label for="price" class="form-label">Price</label>
-					   <input type="number" step="any" class="form-control" id="price" placeholder="Inser price of pizza" th:field="*{price}" th:errorClass="is-invalid">
-					 
-					   <!-- ERROR INPUT PRICE -->
-   					   <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
-   						   <ul>
-   						   		<li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
-   						   </ul>
-   					   </div>
-					   
-				   	</div>
+					  <!-- INPUT FINISH DATE -->
+					  <div class="mb-3">
+					    <label for="finishDate" class="form-label">Finish Date</label>
+					    <input type="datetime-local" class="form-control" id="finishDate" placeholder="Insert finish date of discount" th:field="*{finishDate}" th:errorClass="is-invalid">
+					 	
+					    <!-- ERROR INPUT START DATE -->
+					    <div th:if="${#fields.hasErrors('finishDate')}" class="invalid-feedback">
+					       <ul>
+					       		<li th:each="err : ${#fields.errors('finishDate')}" th:text="${err}"></li>
+					       </ul>
+					    </div>
+
+					   </div>
 					 
 					 <!-- BUTTON -->
 					 <div class="mb-3 d-flex justify-content-center gap-2">
