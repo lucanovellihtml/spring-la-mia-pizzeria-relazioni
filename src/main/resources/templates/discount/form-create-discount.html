@@ -26,6 +26,14 @@
 				 <!-- FORM CREATION DISCOUNT -->
 				 <form class="col-12 col-lg-6" id="form-create-discount" th:object="${discount}" th:action="@{/discounts/create}" method="POST">
 					
+					
+					<!-- INPUT TITLE -->
+					<div class="mb-3">
+					   <label for="id_pizza" class="form-label">Id Pizza</label>
+					   <input type="number" class="form-control" placeholder="Disabled input" id="id_pizza" th:field="*{pizza.id}" th:value="*{pizza.id}" disable>			   
+				   </div>
+
+					
 					<!-- INPUT TITLE -->
 					<div class="mb-3">
 					   <label for="title" class="form-label">Title</label>

@@ -64,10 +64,19 @@
 							 
 						     
 							 <!-- BUTTON -->
-							 <a th:href="@{/pizze}">
-								<button class="btn btn-warning mt-3">BACK</button>
-							 </a>
-					   
+							 <div class="d-grid d-md-block">
+								
+								<a th:href="@{/pizze}" style="text-decoration: none;">
+									<button class="btn btn-warning mt-3">BACK</button>
+								</a>
+								
+								<a th:href="@{/pizze/show/{id}/discount(id=${pizza.id})}" style="text-decoration: none;">
+									<button class="btn btn-success mt-3">NEW DISCOUNT</button>
+								</a>
+								
+							 </div>
+
+		
 					  </div>
 					  
 					 </div>
