@@ -54,9 +54,9 @@ public class DiscountService {
 		 * @param Discount, OGGETTO OFFERTA DA CREARE NELLA REPOSITORY;
 		 * @return L'OFFERTA DA CREARE;
 		 */
-		public Discount create(Discount Discount){
+		public Discount create(Discount discount){
 		
-			return repository.save(Discount);
+			return repository.save(discount);
 			
 		}
 
@@ -65,9 +65,9 @@ public class DiscountService {
 		 * @param Discount, OGGETTO OFFERTA DA AGGIORNARE NELLA REPOSITORY;
 		 * @return L'OFFERTA DA AGGIORNARE;
 		 */
-		public Discount update(Discount Discount){
+		public Discount update(Discount discount){
 		
-			return repository.save(Discount);
+			return repository.save(discount);
 			
 		}
 		
