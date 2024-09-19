@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lessons.java.spring.pizzeria.model.Discount;
-import com.lessons.java.spring.pizzeria.model.Pizza;
-import com.lessons.java.spring.pizzeria.service.PizzaService;
+import com.lessons.java.spring.pizzeria.service.DiscountService;
 
 import jakarta.validation.Valid;
 
