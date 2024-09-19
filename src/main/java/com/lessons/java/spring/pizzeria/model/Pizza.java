@@ -3,6 +3,7 @@ package com.lessons.java.spring.pizzeria.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,8 +45,6 @@ public class Pizza {
 	@OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE} )
 	private List<Discount> discounts;
 	
-	// 1 - VARIABILE CHE AVRA' COME IL RISULTATO DI UNA SPECIFICA QUERY;
-	private int availableCopies;
 	
 	private LocalDateTime updateAt;
 
@@ -106,13 +105,4 @@ public class Pizza {
 	public void setDiscounts(List<Discount> discounts) {
 		this.discounts = discounts;
 	}
-
-	public int getAvailableCopies() {
-		return availableCopies;
-	}
-
-	public void setAvailableCopies(int availableCopies) {
-		this.availableCopies = availableCopies;
-	}
-	
 }

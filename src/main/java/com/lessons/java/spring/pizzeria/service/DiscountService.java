@@ -3,10 +3,12 @@ package com.lessons.java.spring.pizzeria.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lessons.java.spring.pizzeria.model.Discount;
 import com.lessons.java.spring.pizzeria.repo.DiscountRepository;
 
+@Service
 public class DiscountService {
 
 		//REPOSITORY
