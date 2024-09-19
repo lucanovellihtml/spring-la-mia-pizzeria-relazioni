@@ -22,7 +22,13 @@
     </header>
 
 	<!-- FRAGMENTS SUCCESS ALERT -->
-    <div th:fragment="successAlert(message)" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div th:fragment="successAlertDelete(message)" class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <p th:text="${message}"></p>
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
+	<!-- FRAGMENTS SUCCESS CREATE -->
+	<div th:fragment="successAlertCreate(message)" class="alert alert-success alert-dismissible fade show" role="alert">
 	  <p th:text="${message}"></p>
 	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
