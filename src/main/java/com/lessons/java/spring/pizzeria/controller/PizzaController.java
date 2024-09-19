@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lessons.java.spring.pizzeria.model.Discount;
 import com.lessons.java.spring.pizzeria.model.Pizza;
 import com.lessons.java.spring.pizzeria.service.PizzaService;
 
@@ -159,6 +160,26 @@ public class PizzaController {
 		attributes.addFlashAttribute("successMessage", "Pizza deleted...");
 		
 		return "redirect:/pizze";
+		
+	}
+	
+	
+	/**
+	 * CREAZIONE DELLA SINGOLA OFFERTA RELATIVA ALLA PIZZA SPECIFICA MOSTRATA NELLA PAGINA DI SHOW;
+	 * @return FORM PER LA CREAZIONE DELLA SINGOLA OFFERTA;
+	 */
+	@GetMapping("/show/{id}/discount")
+	public String createDiscount(@PathVariable("id") int id , Model model) {
+		
+		Discount discount = new Discount();
+		Pizza pizza = service.findById(id);
+		
+		discount.setPizza(pizza);
+		
+		//INSERISCO I DATI DELLA PIZZA NEL MODEL;
+		model.addAttribute("discount", discount);
+		
+		return "/discount/form-create-discount";
 		
 	}
 	
