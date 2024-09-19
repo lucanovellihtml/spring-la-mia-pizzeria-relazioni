@@ -24,10 +24,17 @@
 				 
 				 
 				 <!-- ALERT SUCCES CREATE -->
-				 <th:block th:if="${successMessage != null}">
+				 <th:block th:if="${successMessageCreate != null}">
 					 <div class="col-12 pt-3 d-flex justify-content-center">
-					 	<div th:replace="~{fragments/fragments :: successAlertCreate(${successMessage})}"></div>
+					 	<div th:replace="~{fragments/fragments :: successAlertCreate(${successMessageCreate})}"></div>
 					 </div>
+				 </th:block>
+				 
+				 <!-- ALERT SUCCES UPDATE -->
+				 <th:block th:if="${successMessageUpdate != null}">
+				  <div class="col-12 pt-3 d-flex justify-content-center">
+				  	<div th:replace="~{fragments/fragments :: successAlertUpdate(${successMessageUpdate})}"></div>
+				  </div>
 				 </th:block>
 				 
 				 
@@ -57,7 +64,17 @@
 							 
 								<!-- LIST DISCOUNTS -->
 								 <ul class="list-group" th:each="discount : ${pizza.discounts}">
-								   <li class="list-group-item" th:text="${discount.title}"></li>
+								   <li class="list-group-item">
+									
+										<!-- NAME DISCOUNT -->
+										<span th:text="${discount.title}"></span>
+										
+										<!-- BUTTON UPDATE DISCOUNT -->
+									   	<a th:href="@{/discounts/edit/{id}(id=${discount.id})}" style="text-decoration: none;">
+									   		<button type="button" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">UPDATE</button>
+									   </a>
+								
+								   </li>
 								 </ul>
 								 
 							 </th:block>
