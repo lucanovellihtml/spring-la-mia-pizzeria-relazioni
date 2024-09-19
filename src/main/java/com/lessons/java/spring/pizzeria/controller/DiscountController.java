@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lessons.java.spring.pizzeria.model.Discount;
 import com.lessons.java.spring.pizzeria.service.DiscountService;
@@ -57,7 +57,7 @@ public class DiscountController {
 	 * @return UNA VOLTA SALVATI I DATI, VIENE RESTITUITA LA LISTA DELLE OFFERTE DELLA RELATIVA PIZZA SELEZIONATA;
 	 */
 	@PostMapping("/create")
-	public String store(@Valid @ModelAttribute("discount") Discount formDiscount, BindingResult bindingResult, Model model) {
+	public String store(@Valid @ModelAttribute("discount") Discount formDiscount, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 		
 		//CONTROLLO SE I CAMPI COMPILATI SONO SBAGLIATI;
 		//SE CI SONO ERRORI, VIENE RESTITUITA LA PAGINA DEL FORM DA RICOMPILARE;
@@ -66,6 +66,8 @@ public class DiscountController {
 			return "/discount/form-create-discount";
 		
 		service.create(formDiscount);
+		
+		attributes.addFlashAttribute("successMessage", "Discount created...");
 		
 		return "redirect:/pizze/show/" + formDiscount.getPizza().getId();
 		
