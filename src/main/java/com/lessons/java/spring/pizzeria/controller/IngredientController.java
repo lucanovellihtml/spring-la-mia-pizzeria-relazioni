@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lessons.java.spring.pizzeria.model.Ingredient;
 import com.lessons.java.spring.pizzeria.service.IngredientService;
@@ -67,7 +69,7 @@ public class IngredientController {
 	 * @return UNA VOLTA SALVATI I DATI, VIENE RESTITUITA LA LISTA DEGLI INGREDIENTI;
 	 */
 	@PostMapping("/create")
-	public String store(@Valid @ModelAttribute("ingredient") Ingredient formIngredient, BindingResult bindingResult, Model model) {
+	public String store(@Valid @ModelAttribute("ingredient") Ingredient formIngredient, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 		
 		//CONTROLLO SE I CAMPI COMPILATI SONO SBAGLIATI;
 		//SE CI SONO ERRORI, VIENE RESTITUITA LA PAGINA DEL FORM DA RICOMPILARE;
@@ -76,6 +78,26 @@ public class IngredientController {
 			return "/ingredient/form-create-ingredient";
 		
 		service.create(formIngredient);
+		
+		attributes.addFlashAttribute("successMessageCreate", "Ingredient created...");
+		
+		return "redirect:/ingredients";
+		
+	}
+	
+	
+	/**
+	 * ELIMINATO IL RECORD DAL REPOSITORY;
+	 * @return LA LISTA AGGIORNATA; 
+	 * 
+	 */
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") int id, RedirectAttributes attributes) {
+		
+		//ELIMINO I DATI DELL'INGREDIENTE DAL REPOSITORY;
+		service.delete(id);
+		
+		attributes.addFlashAttribute("successMessageDelete", "Ingredient deleted...");
 		
 		return "redirect:/ingredients";
 		
