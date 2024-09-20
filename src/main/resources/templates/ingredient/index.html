@@ -21,13 +21,19 @@
 				      <h1>Lista Ingredienti</h1>
 				 </div>
 				 
-				 <!-- ALERT SUCCES DELETE -->
-				 <th:block th:if="${successMessage != null}">
+				 <!-- ALERT SUCCESS DELETE -->
+				 <th:block th:if="${successMessageDelete != null}">
 					<div class="col-12 pt-3 d-flex justify-content-center">
-						<div th:replace="~{fragments/fragments :: successAlertDelete(${successMessage})}"></div>
+						<div th:replace="~{fragments/fragments :: successAlertDelete(${successMessageDelete})}"></div>
 					</div>
 				 </th:block>
 				 
+				 <!-- ALERT SUCCESS CREATE -->
+				 <th:block th:if="${successMessageCreate != null}">
+				 <div class="col-12 pt-3 d-flex justify-content-center">
+				 	<div th:replace="~{fragments/fragments :: successAlertCreate(${successMessageCreate})}"></div>
+				 </div>
+				 </th:block>
 				 
 				 <!-- CONDIZIONE DI DB POPOLATO -->
 				<th:block th:if="${ingredients.size > 0}">
@@ -50,7 +56,6 @@
 						      <th class="d-none d-sm-table-cell" scope="col">#</th>
 						      <th scope="col">Name</th>
 							  <th class="d-none d-md-table-cell" scope="col">Show</th>
-							  <th class="d-none d-md-table-cell" scope="col">Update</th>
 							  <th class="d-none d-md-table-cell" scope="col">Delete</th>
 							  <th class="d-md-none" scope="col">Action</th>
 						    </tr>
@@ -71,11 +76,6 @@
 								<a th:href="@{/ingredients/show/{id}(id=${ingredient.id})}" class="btn btn-success">SHOW</a>
 							  </td>
 							  
-							  <!-- BUTTON UPDATE -->
-							  <td class="d-none d-md-table-cell">
-							  	<a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}" class="btn btn-warning">UPDATE</a>
-							  </td>
-							  
 							  <!-- BUTTON MODAL -->
 							  <td class="d-none d-md-table-cell">
 								<!-- BUTTON TRIGGER MODAL -->
@@ -89,12 +89,12 @@
 								    <div class="modal-content">
 										
 								      <div class="modal-header">
-								        <h1 class="modal-title fs-5" id="exampleModalLabel">ARE YOU SURE OF DELETE THIS PIZZA?</h1>
+								        <h1 class="modal-title fs-5" id="exampleModalLabel">ARE YOU SURE OF DELETE THIS INGREDIENT?</h1>
 								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								      </div>
 									  
 								      <div class="modal-body">
-								        Deleting pizza...
+								        Deleting ingredient...
 								      </div>
 									  
 								      <div class="modal-footer">
@@ -118,12 +118,7 @@
 									<a th:href="@{/ingredients/show/{id}(id=${ingredient.id})}" style="text-decoration: none;">
 										<button type="button" class="btn btn-success" style="max-width: 80px;">SHOW</button>
 									</a>
-									
-									<!-- BUTTON UPDATE -->
-									<a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}" style="text-decoration: none;">
-										<button type="button" class="btn btn-warning" style="max-width: 80px;">UPDATE</button>
-									</a>
-	
+								
 									<!-- BUTTON TRIGGER MODAL -->
 									<button type="button" class="btn btn-danger" style="max-width: 80px;" data-bs-toggle="modal" th:data-bs-target="'#modal-delete-' + ${ingredient.id}">
 									 DELETE
