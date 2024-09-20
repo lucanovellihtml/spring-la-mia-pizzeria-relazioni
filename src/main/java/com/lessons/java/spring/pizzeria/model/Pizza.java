@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -44,6 +47,16 @@ public class Pizza {
 	//DENTRO AL "mappedBy" FACCIO RIFERIMENTO ALLA VARIABILE D'ISTANZA CHE E' PRESENTE NELL'ENTITA' A CUI E' COLLEGATA PIZZA;
 	@OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE} )
 	private List<Discount> discounts;
+	
+	
+	// 2 - LA RELAZIONE E' MOLTI A MOLTI, DOVE UNA PIZZA PUO' AVERE PIU' INGREDIENTI E QUINDI C'E' UNA LISTA;
+	@ManyToMany()
+	@JoinTable(
+		name = "pizza_ingredient",
+		joinColumns = @JoinColumn(name = "pizza_id"),
+		inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+	)
+	private List<Ingredient> ingredients;
 	
 	
 	private LocalDateTime updateAt;
