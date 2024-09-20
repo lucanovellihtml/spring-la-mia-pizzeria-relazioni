@@ -33,6 +33,13 @@
 				<th:block th:if="${ingredients.size > 0}">
 					
 				
+					<!-- BUTTON CREATE -->
+					<div class="col-12 col-lg-6 d-flex justify-content-center justify-content-md-start">
+						<a th:href="@{/ingredients/create}" style="text-decoration: none;">
+							<button type="button" class="btn btn-primary">CREATE A NEW INGREDIENT</button>
+						</a>
+					 </div>
+				
 					 <!-- TABLE -->
 					 <div class="col-12">
 						<table class="table">
@@ -111,7 +118,7 @@
 									<a th:href="@{/ingredients/show/{id}(id=${ingredient.id})}" style="text-decoration: none;">
 										<button type="button" class="btn btn-success" style="max-width: 80px;">SHOW</button>
 									</a>
-	
+									
 									<!-- BUTTON UPDATE -->
 									<a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}" style="text-decoration: none;">
 										<button type="button" class="btn btn-warning" style="max-width: 80px;">UPDATE</button>
