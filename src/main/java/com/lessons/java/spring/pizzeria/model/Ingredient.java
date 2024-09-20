@@ -3,7 +3,6 @@ package com.lessons.java.spring.pizzeria.model;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import com.lessons.java.spring.pizzeria.model.Pizza;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,5 +30,31 @@ public class Ingredient {
 	// 2 - DENTRO AL "mappedBy" FACCIO RIFERIMENTO ALLA VARIABILE D'ISTANZA CHE E' PRESENTE NELL'ENTITA'(PIZZA) A CUI E' COLLEGATA L'INGREDIENTE;
 	@ManyToMany(mappedBy="ingredients")
 	private List<Pizza> pizze;
+
+	
+	//GETTER - SETTER
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Pizza> getPizze() {
+		return pizze;
+	}
+
+	public void setPizze(List<Pizza> pizze) {
+		this.pizze = pizze;
+	}
 	
 }

@@ -118,4 +118,13 @@ public class Pizza {
 	public void setDiscounts(List<Discount> discounts) {
 		this.discounts = discounts;
 	}
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
 }
