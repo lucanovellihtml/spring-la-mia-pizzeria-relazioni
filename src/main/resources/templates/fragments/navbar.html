@@ -5,7 +5,7 @@
 <body>
 	
 	<header>
-		<nav th:fragment="navbar(route)" class="navbar navbar-expand-sm bg-body-tertiary">
+		<nav th:fragment="navbar" class="navbar navbar-expand-sm bg-body-tertiary">
 		  <div class="container-fluid">
 			
 			<!-- TITLE -->
@@ -19,12 +19,22 @@
 			<!-- MENU' -->
 		    <div class="collapse navbar-collapse" id="navbarNav">
 		      <ul class="navbar-nav">
+				
+				<!-- LIST PIZZA -->
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" th:href="@{/pizze}" th:classappend="${route == 'pizze' ? 'active' : 'non-active'}">Index</a>
+		          <a class="nav-link active" aria-current="page" th:href="@{/pizze}">Index</a>
 		        </li>
+				
+				<!-- CREATE PIZZA -->
 				<li class="nav-item">
-				  <a class="nav-link active" aria-current="page" th:href="@{/pizze/create}" th:classappend="${route == 'pizze/create' ? 'active' : 'non-active'}">Create</a>
+				  <a class="nav-link active" aria-current="page" th:href="@{/pizze/create}">Create</a>
 				</li>
+				
+				<!-- LIST INGREDIENT -->
+				<li class="nav-item">
+				  <a class="nav-link active" aria-current="page" th:href="@{/ingredients}">Ingredients</a>
+				</li>
+				
 		      </ul>
 		    </div>
 			
