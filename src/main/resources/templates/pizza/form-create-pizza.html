@@ -39,6 +39,29 @@
 					   </div>
 					   
 				   </div>
+				   
+				   <!-- INPUT INGREDIENT -->
+   				   <div class="mb-3">
+   					
+   						<!-- TITLE -->
+   						<span class="form-check-label">Ingredients</span>
+   					
+   					   <!--  CONDIZIONE DI DB POPOLATO -->
+   					   <th:block th:if="${ingredients.size > 0}" th:each="ingredient : ${ingredients}">
+   		   					<div class="d-flex gap-2">
+   								<input class="form-check-input" type="checkbox" th:value="${ingredient.id}" th:id="|ingredient_${ingredient.id}|" th:field="*{ingredients}">
+   								 <label class="form-check-label" th:for="|ingredient_${ingredient.id}|" th:text="${ingredient.name}">
+   								 </label>
+   		   				   </div>
+   					   </th:block>
+   				   
+   				   
+   					   <!--  CONDIZIONE DI DB NON POPOLATO -->
+   					   <th:block th:unless="${ingredients.size > 0}">
+   								<p>Ingredients not available</p>
+   					   </th:block>
+   				   </div>
+
 					 
 					 <!-- INPUT DESCRIPTION -->
 					 <div class="mb-3">

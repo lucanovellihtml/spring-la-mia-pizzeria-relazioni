@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lessons.java.spring.pizzeria.model.Discount;
 import com.lessons.java.spring.pizzeria.model.Pizza;
+import com.lessons.java.spring.pizzeria.service.IngredientService;
 import com.lessons.java.spring.pizzeria.service.PizzaService;
 
 import jakarta.validation.Valid;
@@ -31,6 +32,9 @@ public class PizzaController {
 	//REPOSITORY CAMPO CON AUTOWIRED CON D.I, DIRE ALL'APPLICATIVO DI INSTANZIARE IN AUTOMATICO IL SERVICE
 	@Autowired
 	private PizzaService service;
+	
+	@Autowired
+	private IngredientService serviceIngredient;
 	
 	
 	/**
@@ -83,6 +87,9 @@ public class PizzaController {
 		//QUESTO PER PERMETTERE DI RICHIMARE SEMPRE LA PAGINA ANCHE SENZA DATI;
 		model.addAttribute("pizza", new Pizza());
 		
+		//INSERISCO I DATI DEGLI INGREDIENTI DISPONIBILI;
+		model.addAttribute("ingredients", serviceIngredient.findAllIngredients());
+		
 		return "/pizza/form-create-pizza";
 		
 	}
@@ -99,8 +106,11 @@ public class PizzaController {
 		//CONTROLLO SE I CAMPI COMPILATI SONO SBAGLIATI;
 		//SE CI SONO ERRORI, VIENE RESTITUITA LA PAGINA DEL FORM DA RICOMPILARE;
 		//IN CASO CONTRARIO, I DATI VENGONO SALVATI SUL DB;
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()) {
+			//INSERISCO I DATI DEGLI INGREDIENTI DISPONIBILI;
+			model.addAttribute("ingredients", serviceIngredient.findAllIngredients());
 			return "/pizza/form-create-pizza";
+		}
 		
 		service.create(formPizza);
 		
@@ -120,6 +130,9 @@ public class PizzaController {
 		//INSERISCO I DATI DELLA PIZZA NEL MODEL;
 		model.addAttribute("pizza", service.findById(id));
 		
+		//INSERISCO I DATI DEGLI INGREDIENTI DISPONIBILI;
+		model.addAttribute("ingredients", serviceIngredient.findAllIngredients());
+		
 		return "/pizza/form-edit-pizza";
 		
 	}
@@ -136,8 +149,11 @@ public class PizzaController {
 		//CONTROLLO SE I CAMPI COMPILATI SONO SBAGLIATI;
 		//SE CI SONO ERRORI, VIENE RESTITUITA LA PAGINA DEL FORM DA RICOMPILARE;
 		//IN CASO CONTRARIO, I DATI VENGONO SALVATI SUL DB;
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()) {
+			//INSERISCO I DATI DEGLI INGREDIENTI DISPONIBILI;
+			model.addAttribute("ingredients", serviceIngredient.findAllIngredients());
 			return "/pizza/form-edit-pizza";
+		}
 		
 		service.update(formPizza);
 		
@@ -182,5 +198,6 @@ public class PizzaController {
 		return "/discount/form-create-discount";
 		
 	}
+	
 	
 }

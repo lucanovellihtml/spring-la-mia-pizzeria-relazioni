@@ -56,6 +56,43 @@
 							 <!-- PRICE -->
 							 <p class="card-text" th:text="${pizza.price}"></p>
 							 
+							 <!-- INGREDIENTS AVAILABLE-->
+ 							 <th:block th:if="${pizza.ingredients.size() > 0}">
+ 								
+								 	<!-- TITLE -->
+								 	<h5 class="card-title pt-3">INGREDIENTS AVAILABLE</h5>
+								 
+									<!-- LIST INGREDIENTS -->
+									 <ul class="list-group" th:each="ingredient : ${pizza.ingredients}">
+									   <li class="list-group-item">
+										
+											<!-- NAME DISCOUNT -->
+											<span th:text="${ingredient.name}"></span>
+										 								
+									   </li>
+									 </ul>
+									 
+									<!-- BUTTON CREATE INGREDIENT -->
+								   	<a th:href="@{/pizze/edit/{id}(id=${pizza.id})}" style="text-decoration: none;">
+								   		<button type="button" class="btn btn-secondary mt-2 mb-2">ADD INGREDIENT</button>
+								    </a>
+ 								 
+ 							 </th:block>
+
+ 							 <!-- INGREDIENTS NO AVAILABLE-->
+ 							 <th:block th:unless="${pizza.ingredients.size() > 0}">
+
+	 							 	<!-- TITLE -->
+	 							 	<h5 class="card-title pt-3">INGREDIENTS NOT AVAILABLE...</h5>
+									
+									<!-- BUTTON CREATE INGREDIENT -->
+								   	<a th:href="@{/pizze/edit/{id}(id=${pizza.id})}" style="text-decoration: none;">
+								   		<button type="button" class="btn btn-secondary mb-3">ADD INGREDIENT</button>
+								    </a>
+ 							  
+ 							 </th:block>
+							 
+							 
 							 <!-- DISCOUNTS AVAILABLE-->
 							 <th:block th:if="${pizza.discounts.size() > 0}">
 								
